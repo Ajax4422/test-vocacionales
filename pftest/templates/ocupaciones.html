@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test de Aptitud Vocacional</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../">Test de Aptitud Vocacional</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a href="../" class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="../logout" class="nav-link" href="#">logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="./signin" class="nav-link" href="#">login</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="container-sm">
+            <h1 class="text-center">Test de Aptitud Vocacional</h1>
+            <h2>Categorias Ocupacionales</h2>
+            <h3>Instrucciones</h3>
+            <article>
+                <p>
+                    En esta seccion se presentan las categorias ocupacionales que se encuentran en el test de aptitud vocacional. 
+                    Por favor, seleccione las 2 categorias que mas le interese y haga click en el boton <span class="badge bg-primary">Siguiente</span>.
+                </p>
+            </article>
+            {% for acu in oc %}
+            <article>
+                <h2>
+                    {{acu.number}}. {{acu.name}}
+                </h2>
+                <p>
+                    {{acu.description}}
+                </p>
+            </article>
+            {% endfor %}
+            <div>
+                <hr width="100%" size="1" color="black">
+            </div>
+            <div>
+                <h2>
+                    Seleccione las 2 categorias que mas le interesen:
+                </h2>
+                <p>
+                    Seleccione el numero de las 2 categorias en los cuadros de texto y haga click en el boton <span class="badge bg-primary">Siguiente</span>.
+                </p>
+            </div>
+            <div class="container-sm">
+                {% if error %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>{{error}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                <form method="post">
+                    <div class="row align-items-start">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Siguiente
+                    </button>
+                </form>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </body>
+</html>

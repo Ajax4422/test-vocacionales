@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test de Aptitud Vocacional</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../">Test de Aptitud Vocacional</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a href="../" class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="../logout" class="nav-link" href="#">logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a href="./signin" class="nav-link" href="#">login</a>
+                    </li>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <div class="container-sm">
+            <h1 class="text-center">Test de Aptitud Vocacional</h1>
+            <h2>RASGOS DE PERSONALIDAD</h2>
+            <h3>Instrucciones</h3>
+            <article>
+                <p>
+                    Se presenta a continuacion una lista de caracteristicas personales.
+                    Debes contrastar cada una de ellas con tu modo de actuar, de pensar, de sentir, en definitiva de ser. Es muy importante en este punto que medites el grado en el que posees cada rasgo de los que se detallan, para avanzar en tu nivel de autoconocimiento, un aspecto decisivo en tu proceso de orientacion y en la toma de decisiones con que este culmina
+                    Anota en la caja de texto de cada pregunta, la enumeracion que le otorgas siguiendo la pauta siguiente: 
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-danger">0. Nada de acuerdo</li>
+                    <li class="list-group-item list-group-item-warning">1. Un poco de acuerdo</li>
+                    <li class="list-group-item list-group-item-info">2. Bastante de acuerdo</li>
+                    <li class="list-group-item list-group-item-success">3. Totalmente/Absolutamente de acuerdo</li>
+                </ul>
+            </article>
+
+            <div>
+                <hr width="100%" size="1" color="black">
+            </div>
+            <div>
+                <div class="bd-example-snippet bd-code-snippet"><div class="bd-example">
+                    {{ error }}
+                    <form method="post">
+                        <div class="container">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col">
+                                    <h4><span class="badge bg-secondary">{{ form.pregunta_1.label_tag }}</span></h4>
+                                    {{ q1 }}
+                                </div>
+                                {{ form.pregunta_1 }}
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h4><span class="badge bg-secondary">{{ form.pregunta_2.label_tag }}</span></h4>
+                                    {{ q2 }}
+                                </div>
+                                {{ form.pregunta_2 }}
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h4><span class="badge bg-secondary">{{ form.pregunta_3.label_tag }}</span></h4>
+                                    {{ q3 }}
+                                </div>
+                                {{ form.pregunta_3 }}
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h4><span class="badge bg-secondary">{{ form.pregunta_4.label_tag }}</span></h4>
+                                    {{ q4 }}
+                                </div>
+                                {{ form.pregunta_4 }}
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h4><span class="badge bg-secondary">{{ form.pregunta_5.label_tag }}</span></h4>
+                                    {{ q5 }}
+                                </div>
+                                {{ form.pregunta_5 }}
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    Siguiente
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    </body>
+</html>
