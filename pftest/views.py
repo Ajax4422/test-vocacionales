@@ -91,7 +91,7 @@ def registro_estudiante(request):
 def vista_ocupaciones(request):
     if request.method == "POST":
         if request.POST['categoria_ocupacional_1'] ==  request.POST['categoria_ocupacional_2']:
-            ocu = ocupaciones.objects.all()
+            ocu = ocupaciones_lista()
             form = forms_ocupa()
             return render(request, "ocupaciones.html", {
                 'oc': ocu,
@@ -106,7 +106,7 @@ def vista_ocupaciones(request):
                 ocupa.save()
                 return redirect('../materias/')
             except:
-                ocu = ocupaciones.objects.all()
+                ocu = ocupaciones_lista()
                 form = forms_ocupa()
                 return render(request, "ocupaciones.html", {
                         'oc': ocu,
@@ -114,7 +114,7 @@ def vista_ocupaciones(request):
                         'error': 'El usuario ya existe'
                         })
     else:
-        ocu = ocupaciones.objects.all()
+        ocu = ocupaciones_lista()
         form = forms_ocupa()
         return render(request, "ocupaciones.html", {
             'oc': ocu,
@@ -125,7 +125,7 @@ def vista_ocupaciones(request):
 def vista_materia(request):
     if request.method == "POST":
         if (request.POST['materia_1'] ==  request.POST['materia_2']) or (request.POST['materia_1'] ==  request.POST['materia_3']) or (request.POST['materia_1'] ==  request.POST['materia_4']) or  (request.POST['materia_2'] ==  request.POST['materia_3']) or  (request.POST['materia_2'] ==  request.POST['materia_4']) or  (request.POST['materia_3'] ==  request.POST['materia_4']):
-            mate = materias.objects.all()
+            mate = materias_lista()
             form = forms_materia()
             return render(request, "materias.html", {
                 'mat': mate,
@@ -142,7 +142,7 @@ def vista_materia(request):
                 mat.save()
                 return redirect('../habilidades/')
             except:
-                mate = materias.objects.all()
+                mate = materias_lista()
                 form = forms_materia()
                 return render(request, "materias.html", {
                     'mat': mate,
@@ -150,7 +150,7 @@ def vista_materia(request):
                     'error': 'El usuario ya existe'
                 })
     else:
-        mate = materias.objects.all()
+        mate = materias_lista()
         form = forms_materia()
         return render(request, "materias.html", {
             'mat': mate,
@@ -161,7 +161,7 @@ def vista_materia(request):
 def vista_habilidades(request):
     if request.method == "POST":
         if (request.POST['habilidad_1'] ==  request.POST['habilidad_2']) or (request.POST['habilidad_1'] ==  request.POST['habilidad_3']) or (request.POST['habilidad_1'] ==  request.POST['habilidad_4']) or  request.POST['habilidad_2'] ==  request.POST['habilidad_3'] or  request.POST['habilidad_2'] ==  request.POST['habilidad_4'] or  request.POST['habilidad_3'] ==  request.POST['habilidad_4']:
-            habl = habilidades.objects.all()
+            habl = habilidades_lista()
             form = forms_habilidad()
             return render(request, "habilidades.html", {
                 'hab': habl,
@@ -178,7 +178,7 @@ def vista_habilidades(request):
                 hab.save()
                 return redirect('../valores/')
             except:
-                habl = habilidades.objects.all()
+                habl = habilidades_lista()
                 form = forms_habilidad()
                 return render(request, "habilidades.html", {
                     'hab': habl,
@@ -186,7 +186,7 @@ def vista_habilidades(request):
                     'error': 'El usuario ya existe'
                 })
     else:
-        habl = habilidades.objects.all()
+        habl = habilidades_lista()
         form = forms_habilidad()
         return render(request, "habilidades.html",{
             'hab': habl,
@@ -197,7 +197,7 @@ def vista_habilidades(request):
 def vista_valores(request):
     if request.method == "POST":
         if (request.POST['valor_1'] ==  request.POST['valor_2']) or (request.POST['valor_1'] ==  request.POST['valor_3']) or (request.POST['valor_1'] ==  request.POST['valor_4']) or  (request.POST['valor_2'] ==  request.POST['valor_3']) or  (request.POST['valor_2'] ==  request.POST['valor_4']) or  (request.POST['valor_3'] ==  request.POST['valor_4']):
-            valo = valores.objects.all()
+            valo = valores_lista()
             form = forms_valor()
             return render(request, "valores.html", {
                 'val': val,
@@ -214,7 +214,7 @@ def vista_valores(request):
                 val.save()
                 return redirect('../preguntas_1/')
             except:
-                valo = valores.objects.all()
+                valo = valores_lista()
                 form = forms_valor()
                 return render(request, "valores.html", {
                         'val': valo,
@@ -222,7 +222,7 @@ def vista_valores(request):
                         'error': 'El usuario ya existe'
                     })
     else:
-        valo = valores.objects.all()
+        valo = valores_lista()
         form = forms_valor()
         return render(request, "valores.html", {
             'val': valo,

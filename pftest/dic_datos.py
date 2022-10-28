@@ -323,3 +323,27 @@ tr_dic = {
     13: ((6, 7, 8, 9),      (1, 10, 7, 6),      (6, 2, 12, 3)),
     14: ((14, 15, 2, 12),   (5, 6, 8, 14),      (3, 7, 12, 1))
 }
+
+def ocupaciones_lista():
+    lista_ocupaciones =[]
+    for key, value in ocupacion_dic.items():
+        lista_ocupaciones.append({'number': key, 'name': value[0], 'description': value[1]})
+    return lista_ocupaciones
+
+def materias_lista():
+    lista_materias = []
+    for key, value in materia_dic.items():
+        lista_materias.append({'number': key, 'name': value[0], 'description': value[1]})
+    return lista_materias
+
+def habilidades_lista():
+    lista_habilidades = []
+    for key, value in habilidad_dic.items():
+        lista_habilidades.append({'number': key, 'name': value[0], 'description': value[1]})
+    return lista_habilidades
+
+def valores_lista():
+    lista_valores = []
+    for key, value in valor_dic.items():
+        lista_valores.append({'number': key, 'name': value[0], 'description': value[1]})
+    return lista_valores
